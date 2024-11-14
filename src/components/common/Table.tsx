@@ -45,7 +45,6 @@ const Table = <T extends { id: number }>({
                     <Td key={index}>{value}</Td>
                   ))}
                   <Td>
-                    {/* Action buttons */}
                     {onEdit && (
                       <IconButton
                         variant='outline'

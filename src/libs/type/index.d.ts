@@ -15,3 +15,10 @@ type Manufacturer = {
   id: number;
   name: string;
 }
+
+type Board = {
+  id: number;
+  name: string;
+  manufacturerId?: number;
+  manufacturerName: string;
+}

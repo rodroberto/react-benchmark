@@ -82,7 +82,7 @@ const Manufacturer = () => {
     <Flex flexDirection='column'>
       <Filter
         title='Manufacturers'
-        createText='Create a manufacturer'
+        createText='Add a manufacturer'
         onCreate={() => setIsOpenModal(true)}
         onFilter={onFilter}
       />
