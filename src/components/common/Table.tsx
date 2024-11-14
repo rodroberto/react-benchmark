@@ -12,11 +12,19 @@ import {
 } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 
-interface TableProps {
+interface TableProps<T> {
   header: string[];
+  data: T[];
+  onEdit?: (item: T) => void;
+  onDelete?: (item: number) => void;
 }
 
-const Table = ({ header }: TableProps) => {
+const Table = <T extends { id: number }>({
+  header,
+  data,
+  onEdit,
+  onDelete,
+}: TableProps<T>) => {
   return (
     <Card>
       <CardBody>
@@ -31,69 +39,37 @@ const Table = ({ header }: TableProps) => {
               </Tr>
             </Thead>
             <Tbody>
-              <Tr>
-                <Td>inches</Td>
-                <Td>millimetres (mm)</Td>
-                <Td>
-                  <IconButton
-                    variant='outline'
-                    colorScheme='teal'
-                    aria-label='Edit'
-                    icon={<EditIcon />}
-                    marginRight='10px'
-                    size='sm'
-                  />
-                  <IconButton
-                    variant='outline'
-                    colorScheme='red'
-                    aria-label='Delete'
-                    icon={<DeleteIcon />}
-                    size='sm'
-                  />
-                </Td>
-              </Tr>
-              <Tr>
-                <Td>feet</Td>
-                <Td>centimetres (cm)</Td>
-                <Td>
-                  <IconButton
-                    variant='outline'
-                    colorScheme='teal'
-                    aria-label='Edit'
-                    icon={<EditIcon />}
-                    marginRight='10px'
-                    size='sm'
-                  />
-                  <IconButton
-                    variant='outline'
-                    colorScheme='red'
-                    aria-label='Delete'
-                    icon={<DeleteIcon />}
-                    size='sm'
-                  />
-                </Td>
-              </Tr>
-              <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td>
-                  <IconButton
-                    variant='outline'
-                    colorScheme='teal'
-                    aria-label='Edit'
-                    icon={<EditIcon />}
-                    marginRight='10px'
-                    size='sm'
-                  />
-                  <IconButton
-                    variant='outline'
-                    colorScheme='red'
-                    aria-label='Delete'
-                    icon={<DeleteIcon />}
-                    size='sm'
-                  />
-                </Td>
-              </Tr>
+              {data.map((row) => (
+                <Tr key={row.id}>
+                  {Object.values(row).map((value, index) => (
+                    <Td key={index}>{value}</Td>
+                  ))}
+                  <Td>
+                    {/* Action buttons */}
+                    {onEdit && (
+                      <IconButton
+                        variant='outline'
+                        colorScheme='teal'
+                        aria-label='Edit'
+                        icon={<EditIcon />}
+                        marginRight='10px'
+                        size='sm'
+                        onClick={() => onEdit(row)}
+                      />
+                    )}
+                    {onDelete && (
+                      <IconButton
+                        variant='outline'
+                        colorScheme='red'
+                        aria-label='Delete'
+                        icon={<DeleteIcon />}
+                        size='sm'
+                        onClick={() => onDelete(row.id)}
+                      />
+                    )}
+                  </Td>
+                </Tr>
+              ))}
             </Tbody>
           </ChakraTable>
         </TableContainer>

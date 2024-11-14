@@ -57,7 +57,7 @@ const EditBenchmark = ({ onSave }: EditBenchmarkProps) => {
         </FormControl>
       </ModalBody>
 
-      <ModalFooter onSave={onSave} />
+      <ModalFooter isDisabled onSave={onSave} />
     </>
   );
 };

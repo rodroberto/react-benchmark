@@ -1,13 +1,14 @@
 import { Button, ModalFooter as ChakraModalFooter } from '@chakra-ui/react';
 
 interface ModalFooterProps {
+  isDisabled: boolean;
   onSave: () => void;
 }
 
-const ModalFooter = ({ onSave }: ModalFooterProps) => {
+const ModalFooter = ({ isDisabled, onSave }: ModalFooterProps) => {
   return (
     <ChakraModalFooter marginTop='16px'>
-      <Button colorScheme='teal' onClick={onSave} minWidth='100px'>
+      <Button isDisabled={isDisabled} colorScheme='teal' onClick={onSave} minWidth='100px'>
         Save
       </Button>
     </ChakraModalFooter>

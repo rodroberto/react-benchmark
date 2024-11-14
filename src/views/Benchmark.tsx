@@ -16,8 +16,9 @@ const Benchmark = () => {
         title='Benchmark Types'
         createText='Add a benchmark type'
         onCreate={() => setIsOpenModal(true)}
+        onFilter={() => {}}
       />
-      <Table header={BENCHMARK_TABLE_HEADER} />
+      <Table header={BENCHMARK_TABLE_HEADER} data={[]} />
       <Modal
         title='benchmark type'
         isOpen={isOpenModal}

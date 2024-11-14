@@ -7,14 +7,24 @@ import {
   InputLeftElement,
   Text,
 } from '@chakra-ui/react';
+import { useState } from 'react';
 
 interface FilterProps {
   title: string;
   createText: string;
   onCreate: () => void;
+  onFilter: (value: string) => void;
 }
 
-const Filter = ({ title, createText, onCreate }: FilterProps) => {
+const Filter = ({ title, createText, onCreate, onFilter }: FilterProps) => {
+  const [value, setValue] = useState<string>();
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const filterValue = e.target.value;
+    setValue(filterValue);
+    onFilter(filterValue);
+  };
+
   return (
     <>
       <Text fontWeight='bold' fontSize='22px' paddingBottom='30px'>
@@ -29,7 +39,11 @@ const Filter = ({ title, createText, onCreate }: FilterProps) => {
           <InputLeftElement pointerEvents='none'>
             <SearchIcon color='gray.300' />
           </InputLeftElement>
-          <Input placeholder={`Search for ${title.toLowerCase()}`} />
+          <Input
+            placeholder={`Search for ${title.toLowerCase()}`}
+            value={value}
+            onChange={onChange}
+          />
         </InputGroup>
         <Button colorScheme='teal' onClick={onCreate}>
           {createText}

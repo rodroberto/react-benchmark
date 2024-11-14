@@ -10,3 +10,8 @@ type ModalSize =
   | '5xl'
   | '6xl'
   | 'full';
+
+type Manufacturer = {
+  id: number;
+  name: string;
+}

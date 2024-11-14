@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import {
   Flex,
   FormControl,
@@ -9,22 +11,28 @@ import {
 import ModalFooter from './common/modal/ModalFooter';
 
 interface EditManufacturerProps {
-  onSave: () => void;
+  onSave: (name: string) => void;
+  selectedManufacturer?: Manufacturer;
 }
 
-const EditManufacturer = ({ onSave }: EditManufacturerProps) => {
+const EditManufacturer = ({
+  onSave,
+  selectedManufacturer,
+}: EditManufacturerProps) => {
+  const [name, setName] = useState<string>(selectedManufacturer?.name || '');
+
   return (
     <>
       <ModalBody>
         <Flex flexDirection='column'>
           <FormControl marginBottom='16px'>
             <FormLabel>Manufacturer Name</FormLabel>
-            <Input />
+            <Input value={name} onChange={(e) => setName(e.target.value)} />
           </FormControl>
         </Flex>
       </ModalBody>
 
-      <ModalFooter onSave={onSave} />
+      <ModalFooter isDisabled={!name} onSave={() => onSave(name)} />
     </>
   );
 };

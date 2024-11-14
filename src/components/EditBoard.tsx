@@ -33,7 +33,7 @@ const EditBoard = ({ onSave }: EditBoardProps) => {
         </Flex>
       </ModalBody>
 
-      <ModalFooter onSave={onSave} />
+      <ModalFooter isDisabled onSave={onSave} />
     </>
   );
 };

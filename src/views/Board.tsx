@@ -16,8 +16,9 @@ const Board = () => {
         title='Boards'
         createText='Create a board'
         onCreate={() => setIsOpenModal(true)}
+        onFilter={() => {}}
       />
-      <Table header={BOARD_TABLE_HEADER} />
+      <Table header={BOARD_TABLE_HEADER} data={[]} />
       <Modal
         title='board'
         isOpen={isOpenModal}
