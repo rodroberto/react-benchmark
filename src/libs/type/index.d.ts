@@ -22,3 +22,13 @@ type Board = {
   manufacturerId?: number;
   manufacturerName: string;
 }
+
+type Benchmark = {
+  id: number;
+  name: string;
+  slug?: string;
+  unit: string;
+  cpu?: string[] | string;
+  network?: string[] | string;
+  description?: string;
+}

@@ -15,4 +15,4 @@ export const AUTHENTICATED_PATH = [
 
 export const BOARD_TABLE_HEADER = ['Id', 'Board Name', 'Manufacturer'];
 export const MANUFACTURER_TABLE_HEADER = ['Id', 'Manufacturer Name'];
-export const BENCHMARK_TABLE_HEADER = ['Name', 'Slug', 'Options', 'Description'];
+export const BENCHMARK_TABLE_HEADER = ['Id', 'Name', 'Slug', 'Unit', 'CPU Options', 'Network Options', 'Description'];

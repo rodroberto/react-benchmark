@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Card,
   CardBody,
@@ -9,6 +10,8 @@ import {
   Td,
   TableContainer,
   IconButton,
+  Flex,
+  Text,
 } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 
@@ -41,9 +44,21 @@ const Table = <T extends { id: number }>({
             <Tbody>
               {data.map((row) => (
                 <Tr key={row.id}>
-                  {Object.values(row).map((value, index) => (
-                    <Td key={index}>{value}</Td>
-                  ))}
+                  {Object.values(row).map((value, index) => {
+                    if (Array.isArray(value)) {
+                      return (
+                        <Td key={index}>
+                          <Flex flexDirection='column'>
+                            {value.map((e) => (
+                              <Text key={e} marginTop='2px'>{e}</Text>
+                            ))}
+                          </Flex>
+                        </Td>
+                      );
+                    } else {
+                      return <Td key={index}>{value}</Td>;
+                    }
+                  })}
                   <Td>
                     {onEdit && (
                       <IconButton
